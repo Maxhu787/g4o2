@@ -5,6 +5,9 @@ const mapHeight = 2000;
 const playerWidth = 30;
 const playerHeight = 30;
 
+const container = document.getElementById("container");
+const map = document.getElementById("map");
+
 let usernametemp = '';
 /*do {
     usernametemp = prompt('Username');
@@ -22,21 +25,34 @@ var currentPosition = {
     x: 0,
     y: 0
 };
+
+document.addEventListener("keydown", function (event) {
+    keysPressed[event.key] = true;
+    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "s", "a", "d"].includes(event.key)) {
+        event.preventDefault();
+    }
+});
+
 function updatePlayerPosition() {
     var x = currentPosition.x;
     var y = currentPosition.y;
-    var movementRate = 8;
+    var playerMovementRate = 8;
+
     if (keysPressed["ArrowUp"] || keysPressed["w"]) {
-        y -= movementRate;
+        y -= playerMovementRate;
+        window.scrollBy(0, -playerMovementRate);
     }
     if (keysPressed["ArrowDown"] || keysPressed["s"]) {
-        y += movementRate;
+        y += playerMovementRate;
+        window.scrollBy(0, playerMovementRate);
     }
     if (keysPressed["ArrowLeft"] || keysPressed["a"]) {
-        x -= movementRate;
+        x -= playerMovementRate;
+        window.scrollBy(-playerMovementRate, 0);
     }
     if (keysPressed["ArrowRight"] || keysPressed["d"]) {
-        x += movementRate;
+        x += playerMovementRate;
+        window.scrollBy(playerMovementRate, 0);
     }
 
     player.style.transform = `translate(${x}px, ${y}px)`;
@@ -64,8 +80,10 @@ updatePlayerPosition();
 
 document.addEventListener("keydown", function (event) {
     keysPressed[event.key] = true;
+    event.preventDefault();
 });
 
 document.addEventListener("keyup", function (event) {
     keysPressed[event.key] = false;
+    event.preventDefault();
 });
