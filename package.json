@@ -1,0 +1,19 @@
+{
+  "name": "g4o2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maxhu787/g4o2.git"
+  },
+  "author": "",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/Maxhu787/g4o2/issues"
+  },
+  "homepage": "https://github.com/Maxhu787/g4o2#readme"
+}
