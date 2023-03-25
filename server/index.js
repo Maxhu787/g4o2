@@ -5,6 +5,9 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+
+const path = require('path');
+const rootDir = path.join(__dirname, '..');
 /*
 let con = mysql.createConnection({
     host: 'localhost',
@@ -30,8 +33,10 @@ app.use('/\*', function (req, res, next) {
     next()
 })
 
+app.use(express.static(path.join(rootDir, 'public')));
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(path.join(rootDir, 'public', 'index.html'));
 });
 
 app.get('/api', (req, res) => {

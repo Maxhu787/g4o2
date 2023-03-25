@@ -1,0 +1,35 @@
+#map-container {
+    width: 2000px;
+    height: 2000px;
+    overflow: auto;
+}
+
+#map {
+    /* background-image: url("path/to/map-image.jpg"); */
+    background-size: 2000px 2000px;
+    position: relative;
+    width: 2000px;
+    height: 2000px;
+}
+
+.player {
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    position: absolute;
+    border-radius: 100px;
+    top: 0;
+    left: 0;
+    transition: all 0.1s ease-out;
+
+    background-image: url("/images/g4o2.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+
+.health {
+    height: 100%;
+    width: 6px;
+    background-color: lightgreen;
+    margin-left: -10px;
+}
