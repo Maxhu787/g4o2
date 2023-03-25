@@ -40,20 +40,34 @@ function updatePlayerPosition() {
 
     if (keysPressed["ArrowUp"] || keysPressed["w"]) {
         y -= playerMovementRate;
-        window.scrollBy(0, -playerMovementRate);
     }
     if (keysPressed["ArrowDown"] || keysPressed["s"]) {
         y += playerMovementRate;
-        window.scrollBy(0, playerMovementRate);
     }
     if (keysPressed["ArrowLeft"] || keysPressed["a"]) {
         x -= playerMovementRate;
-        window.scrollBy(-playerMovementRate, 0);
     }
     if (keysPressed["ArrowRight"] || keysPressed["d"]) {
         x += playerMovementRate;
-        window.scrollBy(playerMovementRate, 0);
     }
+
+    let screenMiddleX = window.innerWidth / 2;
+    let screenMiddleY = window.innerHeight / 2;
+
+    // check if player is at middle of screen horizontally
+    if (x > screenMiddleX) {
+        window.scrollBy(playerMovementRate, 0);
+    } else if (x < screenMiddleX) {
+        window.scrollBy(-playerMovementRate, 0);
+    }
+
+    // check if player is at middle of screen vertically
+    if (y > screenMiddleY) {
+        window.scrollBy(0, playerMovementRate);
+    } else if (y < screenMiddleY) {
+        window.scrollBy(0, -playerMovementRate);
+    }
+
 
     player.style.transform = `translate(${x}px, ${y}px)`;
     let padding = 20;
