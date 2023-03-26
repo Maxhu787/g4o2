@@ -1,5 +1,4 @@
 const socket = io();
-const player = document.getElementById("player");
 const mapWidth = window.innerWidth;
 const mapHeight = window.innerHeight;
 const playerWidth = 30;
@@ -8,20 +7,40 @@ const playerHeight = 30;
 const container = document.getElementById("container");
 const map = document.getElementById("map");
 
-let usernametemp = '';
-/*do {
-    usernametemp = prompt('Username');
-} while (usernametemp.match(/[^a-zA-Z0-9_]+/g) || usernametemp == "")
-*/
-//    username = usernametemp;
-username = 'g4o2';
+let username = '';
+do {
+    username = prompt('Username');
+} while (username.match(/[^a-zA-Z0-9_]+/g) || username == "");
+
 socket.emit('user-connect', username);
 socket.on('user-connect', function (username) {
     console.log(`${username} connected`);
-})
-var keysPressed = {};
 
-var currentPosition = {
+    const newPlayer = document.createElement("div");
+    newPlayer.classList.add("player");
+    newPlayer.setAttribute("id", username);
+    map.appendChild(newPlayer);
+
+    const newPlayerHealth = document.createElement("div");
+    newPlayerHealth.classList.add("health");
+    newPlayerHealth.setAttribute("id", `${username}-health`);
+    newPlayer.appendChild(newPlayerHealth);
+});
+
+const newPlayer = document.createElement("div");
+newPlayer.classList.add("player");
+newPlayer.setAttribute("id", username);
+map.appendChild(newPlayer);
+
+const newPlayerHealth = document.createElement("div");
+newPlayerHealth.classList.add("health");
+newPlayerHealth.setAttribute("id", `${username}-health`);
+newPlayer.appendChild(newPlayerHealth);
+
+const player = document.getElementById(username);
+const keysPressed = {};
+
+let currentPosition = {
     x: 500,
     y: 500
 };
@@ -36,7 +55,7 @@ document.addEventListener("keydown", function (event) {
 function updatePlayerPosition() {
     let x = currentPosition.x;
     let y = currentPosition.y;
-    let playerMovementRate = 8;
+    const playerMovementRate = 8;
 
     if (keysPressed["ArrowUp"] || keysPressed["w"]) {
         y -= playerMovementRate;
@@ -56,7 +75,7 @@ function updatePlayerPosition() {
     }
 
     player.style.transform = `translate(${x}px, ${y}px)`;
-    let padding = 150;
+    const padding = 150;
     if (x < 0) {
         x = padding;
     }
@@ -86,4 +105,4 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("keyup", function (event) {
     keysPressed[event.key] = false;
     event.preventDefault();
-})
+});

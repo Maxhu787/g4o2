@@ -50,7 +50,8 @@ app.get('/api', (req, res) => {
 io.on('connection', (socket) => {
     socket.on('user-connect', (username) => {
         console.log(`User ${username} connected`);
-        io.emit('user-connect', username);
+        // io.emit('user-connect', username);
+        socket.broadcast.emit('user-connect', username);
     })
     socket.on('disconnect', () => {
         console.log('User disconnected');
