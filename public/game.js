@@ -1,7 +1,7 @@
 const socket = io();
 const player = document.getElementById("player");
-const mapWidth = 2000;
-const mapHeight = 2000;
+const mapWidth = window.innerWidth;
+const mapHeight = window.innerHeight;
 const playerWidth = 30;
 const playerHeight = 30;
 
@@ -56,7 +56,7 @@ function updatePlayerPosition() {
     }
 
     player.style.transform = `translate(${x}px, ${y}px)`;
-    let padding = 20;
+    let padding = 150;
     if (x < 0) {
         x = padding;
     }

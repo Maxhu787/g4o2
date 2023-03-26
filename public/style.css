@@ -1,24 +1,26 @@
+html {
+    height: 100%;
+    overflow: auto;
+}
+
 body {
+    height: 100%;
     margin: 0;
-    overflow: hidden;
 }
 #container {
-    width: 2000px;
-    height: 2000px;
-    /* overflow: auto; */
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: relative;
 }
 
 #map {
-    /* background-image: url("/images/g4o2.jpeg"); */
-    /* background-color: #8bc34a; */
     background: repeating-linear-gradient(transparent, grey 40px), repeating-linear-gradient(0.25turn, white, grey 40px);
     background-size: 2000px 2000px;
     position: relative;
-    width: 2000px;
-    height: 2000px;
+    width: 100%;
+    height: 100%;
 }
-
 .player {
     height: 30px;
     width: 30px;
@@ -35,8 +37,15 @@ body {
 }
 
 .health {
-    height: 100%;
+  /*  height: 100%;
     width: 6px;
     background-color: lightgreen;
     margin-left: -10px;
+*/
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: red;
 }
