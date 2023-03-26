@@ -22,8 +22,8 @@ socket.on('user-connect', function (username) {
 var keysPressed = {};
 
 var currentPosition = {
-    x: 0,
-    y: 0
+    x: 500,
+    y: 500
 };
 
 document.addEventListener("keydown", function (event) {
@@ -34,40 +34,26 @@ document.addEventListener("keydown", function (event) {
 });
 
 function updatePlayerPosition() {
-    var x = currentPosition.x;
-    var y = currentPosition.y;
-    var playerMovementRate = 8;
+    let x = currentPosition.x;
+    let y = currentPosition.y;
+    let playerMovementRate = 8;
 
     if (keysPressed["ArrowUp"] || keysPressed["w"]) {
         y -= playerMovementRate;
+        window.scrollBy(0, -playerMovementRate);
     }
     if (keysPressed["ArrowDown"] || keysPressed["s"]) {
         y += playerMovementRate;
+        window.scrollBy(0, playerMovementRate);
     }
     if (keysPressed["ArrowLeft"] || keysPressed["a"]) {
         x -= playerMovementRate;
+        window.scrollBy(-playerMovementRate, 0);
     }
     if (keysPressed["ArrowRight"] || keysPressed["d"]) {
         x += playerMovementRate;
-    }
-
-    let screenMiddleX = window.innerWidth / 2;
-    let screenMiddleY = window.innerHeight / 2;
-
-    // check if player is at middle of screen horizontally
-    if (x > screenMiddleX) {
         window.scrollBy(playerMovementRate, 0);
-    } else if (x < screenMiddleX) {
-        window.scrollBy(-playerMovementRate, 0);
     }
-
-    // check if player is at middle of screen vertically
-    if (y > screenMiddleY) {
-        window.scrollBy(0, playerMovementRate);
-    } else if (y < screenMiddleY) {
-        window.scrollBy(0, -playerMovementRate);
-    }
-
 
     player.style.transform = `translate(${x}px, ${y}px)`;
     let padding = 20;
@@ -100,4 +86,4 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("keyup", function (event) {
     keysPressed[event.key] = false;
     event.preventDefault();
-});
+})

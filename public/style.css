@@ -1,11 +1,18 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
 #container {
     width: 2000px;
     height: 2000px;
-    overflow: auto;
+    /* overflow: auto; */
+    overflow: hidden;
 }
 
 #map {
-    /* background-image: url("path/to/map-image.jpg"); */
+    /* background-image: url("/images/g4o2.jpeg"); */
+    /* background-color: #8bc34a; */
+    background: repeating-linear-gradient(transparent, grey 40px), repeating-linear-gradient(0.25turn, white, grey 40px);
     background-size: 2000px 2000px;
     position: relative;
     width: 2000px;
